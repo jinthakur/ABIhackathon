@@ -1,6 +1,6 @@
 """
 LLM Agent — wound data extraction and eligibility determination.
-Uses regex extraction by default; optionally calls Claude API if ANTHROPIC_API_KEY is set.
+Uses regex extraction by default; optionally calls OpenAI if OPENAI_API_KEY is set.
 """
 import re
 import json

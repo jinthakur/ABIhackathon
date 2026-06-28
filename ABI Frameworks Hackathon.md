@@ -96,3 +96,4 @@ At the end of the session, you will present your work. Plan for roughly 10 minut
 Bring any questions — we're available throughout.
 
 Good luck.
+

@@ -3,4 +3,4 @@ requests>=2.34
 psycopg2-binary
 python-dotenv
 pyyaml
-anthropic>=0.40
+openai>=1.0

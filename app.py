@@ -54,6 +54,16 @@ def index():
         ORDER BY routing_decision, facility_id, patient_id
     """).fetchall()
 
+    # Patients with missing wound data fields
+    missing_rows = conn.execute("""
+        SELECT patient_id, first_name, last_name, facility_id, routing_decision,
+               wound_type, wound_stage, location, length_cm, width_cm, depth_cm, drainage_amount
+        FROM eligibility_results
+        WHERE wound_type IS NULL OR length_cm IS NULL OR width_cm IS NULL
+              OR drainage_amount IS NULL OR location IS NULL
+        ORDER BY facility_id, patient_id
+    """).fetchall()
+
     # Table counts
     table_counts = {}
     tables = conn.execute(
@@ -63,7 +73,7 @@ def index():
         table_counts[t] = conn.execute(f"SELECT COUNT(*) FROM [{t}]").fetchone()[0]
 
     conn.close()
-    return render_template("index.html", stats=stats, results=results, table_counts=table_counts)
+    return render_template("index.html", stats=stats, results=results, table_counts=table_counts, missing_rows=missing_rows)
 
 
 @app.route("/patient/<patient_id>")
@@ -228,6 +238,140 @@ def api_status():
         progress = {"running": False, "done": 0, "total": stats["total"], "error": 0}
 
     return jsonify({**stats, **progress})
+
+
+@app.route("/api/patient/<patient_id>/retry", methods=["POST"])
+def api_retry_patient(patient_id):
+    """Re-fetch all PCC API data for one patient and reprocess wound extraction + eligibility."""
+    conn = get_db()
+    row = conn.execute(
+        "SELECT id, patient_id, facility_id, first_name, last_name, date_of_birth, raw_data FROM patients WHERE patient_id = ?",
+        (patient_id,)
+    ).fetchone()
+    conn.close()
+
+    if not row:
+        return jsonify({"error": f"Patient {patient_id} not found in patients table"}), 404
+
+    import json as _json
+    raw = _json.loads(row["raw_data"]) if row["raw_data"] else {}
+    patient = {**raw, "patient_id": row["patient_id"], "id": row["id"], "_facility_id": row["facility_id"]}
+
+    try:
+        from agents.clinical_agent import fetch_clinical_data
+        from agents.extraction_agent import extract_wound_data
+        from agents.eligibility_agent import determine_eligibility
+        import db as _db
+
+        clinical_data = fetch_clinical_data(patient)
+        wound = extract_wound_data(clinical_data["notes"], clinical_data["assessments"])
+        eligibility = determine_eligibility(clinical_data, wound)
+
+        conn2 = _db.get_connection()
+        try:
+            _db.upsert_patient(conn2, patient, row["facility_id"])
+            _db.insert_diagnoses(conn2, patient_id, clinical_data["diagnoses"])
+            _db.insert_coverage(conn2, patient_id, clinical_data["coverage"])
+            _db.insert_notes(conn2, row["id"], patient_id, clinical_data["notes"])
+            _db.insert_assessments(conn2, row["id"], patient_id, clinical_data["assessments"])
+            _db.upsert_wound_extraction(conn2, patient_id, wound)
+            _db.upsert_eligibility(conn2, eligibility)
+            conn2.commit()
+        except Exception as e:
+            conn2.rollback()
+            raise
+        finally:
+            conn2.close()
+
+        return jsonify({
+            "status": "ok",
+            "patient_id": patient_id,
+            "routing_decision": eligibility["routing_decision"],
+            "wound_type": eligibility.get("wound_type"),
+            "location": eligibility.get("location"),
+            "length_cm": eligibility.get("length_cm"),
+            "width_cm": eligibility.get("width_cm"),
+            "drainage_amount": eligibility.get("drainage_amount"),
+            "reason": eligibility.get("reason"),
+            "notes_fetched": len(clinical_data["notes"]),
+            "assessments_fetched": len(clinical_data["assessments"]),
+        })
+
+    except Exception as e:
+        logger.error(f"Retry failed for {patient_id}: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/patient/<patient_id>/followup", methods=["POST"])
+def api_followup(patient_id):
+    """Generate AI follow-up suggestions for a patient using OpenAI."""
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    api_key = os.getenv("OPENAI_API_KEY", "")
+    if not api_key:
+        return jsonify({"error": "OPENAI_API_KEY not configured"}), 500
+
+    conn = get_db()
+    elig = conn.execute("SELECT * FROM eligibility_results WHERE patient_id = ?", (patient_id,)).fetchone()
+    notes = conn.execute(
+        "SELECT note_text, note_date, note_type FROM clinical_notes WHERE patient_id = ? ORDER BY note_date DESC LIMIT 3",
+        (patient_id,)
+    ).fetchall()
+    diagnoses = conn.execute(
+        "SELECT icd10_code, description FROM diagnoses WHERE patient_id = ?", (patient_id,)
+    ).fetchall()
+    conn.close()
+
+    if not elig:
+        return jsonify({"error": f"Patient {patient_id} not found"}), 404
+
+    e = dict(elig)
+    wound_summary = (
+        f"Wound Type: {e.get('wound_type') or 'unknown'}, "
+        f"Stage: {e.get('wound_stage') or 'unknown'}, "
+        f"Location: {e.get('location') or 'unknown'}, "
+        f"Size: {e.get('length_cm') or '?'}x{e.get('width_cm') or '?'}"
+        + (f"x{e['depth_cm']}" if e.get('depth_cm') else "") + " cm, "
+        f"Drainage: {e.get('drainage_amount') or 'unknown'}"
+    )
+    diag_text = "; ".join(f"{d['icd10_code']} ({d['description']})" for d in diagnoses) or "None"
+    notes_text = "\n".join(
+        f"[{n['note_date']} {n['note_type']}]: {n['note_text'][:400]}" for n in notes
+    ) or "No notes available."
+
+    prompt = f"""You are a wound care clinical advisor. Based on the following patient data, provide concise follow-up recommendations.
+
+Patient: {e.get('first_name')} {e.get('last_name')} (ID: {patient_id})
+Medicare Part B: {'Yes' if e.get('has_medicare_part_b') else 'No'}
+Billing Decision: {e.get('routing_decision', '').replace('_', ' ').upper()}
+Reason: {e.get('reason') or 'N/A'}
+
+Wound Assessment:
+{wound_summary}
+
+ICD-10 Diagnoses: {diag_text}
+
+Recent Clinical Notes:
+{notes_text}
+
+Provide 3-5 specific, actionable follow-up recommendations covering: wound care treatment, reassessment timing, documentation gaps (if any), and billing next steps. Be concise and clinical."""
+
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=api_key)
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=600,
+            temperature=0.3,
+        )
+        suggestions = response.choices[0].message.content.strip()
+        return jsonify({"patient_id": patient_id, "suggestions": suggestions})
+    except Exception as e:
+        logger.error(f"OpenAI error for {patient_id}: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/api/failed-calls")
