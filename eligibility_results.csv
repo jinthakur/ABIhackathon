@@ -1,0 +1,301 @@
+id,patient_id,facility_id,first_name,last_name,has_medicare_part_b,has_wound_diagnosis,wound_type,wound_stage,location,length_cm,width_cm,depth_cm,drainage_amount,routing_decision,reason,created_at,updated_at
+1,FA-001,101,Agnes,Dunbar,1,1,pressure ulcer,Stage 3,Right Hip,2.9,2.8,,heavy,auto_accept,"All required fields documented: pressure ulcer, Right Hip, measurements 2.9x2.8 cm, drainage: heavy",2026-06-28 17:17:30,2026-06-28 17:17:30
+2,FA-008,101,Eleanor,Yates,0,1,,,Lower Leg,6.0,1.7,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:17:30,2026-06-28 17:17:30
+3,FA-013,101,Melvin,Figueroa,1,1,,,,1.4,1.2,0.8,light,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:17:30,2026-06-28 17:17:30
+4,FA-009,101,Roscoe,Dunbar,1,1,,,Left Foot,5.3,4.5,0.8,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:17:30,2026-06-28 17:17:30
+5,FA-003,101,Philip,Oates,1,1,,,,8.0,3.5,0.2,,flag_for_review,"Missing required fields: wound type, drainage level, wound location",2026-06-28 17:17:40,2026-06-28 17:17:40
+6,FA-007,101,Ima,Stanton,0,1,,,Plantar,2.8,3.8,1.4,none,reject,No active Medicare Part B coverage,2026-06-28 17:17:40,2026-06-28 17:17:40
+7,FA-010,101,Oliver,Watts,0,1,,,,3.7,2.0,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:17:40,2026-06-28 17:17:40
+8,FA-012,101,Robert,Coleman,1,1,abscess,,,1.2,0.7,0.2,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:17:44,2026-06-28 17:17:44
+9,FA-015,101,Vernon,Ramirez,0,1,pressure ulcer,,Lower Leg,6.4,4.5,0.6,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:17:51,2026-06-28 17:17:51
+10,FA-016,101,Olive,Larsson,1,1,,,Lower Leg,7.6,4.2,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:17:51,2026-06-28 17:17:51
+11,FA-020,101,Vernon,Jacobs,1,1,,,Plantar,3.2,2.3,,none,flag_for_review,Missing required fields: wound type,2026-06-28 17:17:51,2026-06-28 17:17:51
+12,FA-024,101,Ralph,Nakamura,1,1,pressure ulcer,Stage 3,Buttock,6.8,4.4,,heavy,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 6.8x4.4 cm, drainage: heavy",2026-06-28 17:17:51,2026-06-28 17:17:51
+13,FA-022,101,Oliver,Webb,0,1,,,Lower Leg,2.5,3.2,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:17:51,2026-06-28 17:17:51
+14,FA-026,101,Hubert,Kim,1,1,pressure ulcer,,,3.8,2.2,1.8,heavy,flag_for_review,Missing required fields: wound location,2026-06-28 17:17:51,2026-06-28 17:17:51
+15,FA-027,101,Howard,Nkrumah,1,1,abscess,,,0.8,1.1,0.6,light,flag_for_review,Missing required fields: wound location,2026-06-28 17:17:51,2026-06-28 17:17:51
+16,FA-029,101,Fannie,Dunbar,0,1,pressure ulcer,Stage 3,Left Hip,4.3,5.4,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:17:52,2026-06-28 17:17:52
+17,FA-023,101,Kristina,Lefebvre,1,1,,,Plantar,4.1,3.6,0.7,,flag_for_review,"Missing required fields: wound type, drainage level",2026-06-28 17:17:55,2026-06-28 17:17:55
+18,FA-002,101,Leon,Dawson,0,1,pressure ulcer,,Buttock,5.9,4.5,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:18:00,2026-06-28 17:18:00
+19,FA-004,101,Virginia,Donnelly,0,1,,,Plantar,4.3,1.8,0.3,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:18:00,2026-06-28 17:18:00
+20,FA-011,101,Ethel,Upton,1,1,pressure ulcer,Stage 2,Sacral,1.2,1.5,,light,auto_accept,"All required fields documented: pressure ulcer, Sacral, measurements 1.2x1.5 cm, drainage: light",2026-06-28 17:18:01,2026-06-28 17:18:01
+21,FA-017,101,Morris,Jefferson,1,1,,,Lower Leg,6.3,5.7,0.2,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:18:01,2026-06-28 17:18:01
+22,FA-025,101,Evelyn,Perry,1,1,pressure ulcer,Stage 4,Left Heel,,,,moderate,flag_for_review,Missing required fields: measurements (L×W),2026-06-28 17:18:01,2026-06-28 17:18:01
+23,FA-036,101,Wilfred,Newton,0,1,,,Plantar,1.6,2.7,1.2,none,reject,No active Medicare Part B coverage,2026-06-28 17:18:02,2026-06-28 17:18:02
+24,FA-014,101,Harriet,Yuen,0,1,pressure ulcer,Stage 2,Buttock,1.0,1.9,,light,reject,No active Medicare Part B coverage,2026-06-28 17:18:11,2026-06-28 17:18:11
+25,FA-033,101,Nettie,Abbott,0,1,,,Plantar,4.7,3.5,1.0,none,reject,No active Medicare Part B coverage,2026-06-28 17:18:11,2026-06-28 17:18:11
+26,FA-034,101,Kristina,Warren,1,1,pressure ulcer,Stage 2,Left Heel,3.0,2.2,,moderate,auto_accept,"All required fields documented: pressure ulcer, Left Heel, measurements 3.0x2.2 cm, drainage: moderate",2026-06-28 17:18:11,2026-06-28 17:18:11
+27,FA-021,101,Hannah,Reyes,1,0,pressure ulcer,,,2.6,1.3,0.5,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:18:11,2026-06-28 17:18:11
+28,FA-028,101,Xenia,Jensen,0,1,,,Plantar,1.6,3.2,0.3,none,reject,No active Medicare Part B coverage,2026-06-28 17:18:12,2026-06-28 17:18:12
+29,FA-030,101,Simon,Fleming,0,1,pressure ulcer,Stage 3,Right Heel,3.9,3.6,0.6,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:18:12,2026-06-28 17:18:12
+30,FA-032,101,Una,Haynes,0,1,,,Plantar,4.2,1.3,0.8,light,reject,No active Medicare Part B coverage,2026-06-28 17:18:16,2026-06-28 17:18:16
+31,FA-006,101,Helen,Reyes,1,1,,,Left Foot,2.7,1.5,,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:18:20,2026-06-28 17:18:20
+32,FA-040,101,Oliver,Webb,1,1,,,Plantar,3.0,0.9,,light,flag_for_review,Missing required fields: wound type,2026-06-28 17:18:22,2026-06-28 17:18:22
+33,FA-019,101,Ivan,Oneal,0,1,pressure ulcer,Stage 2,Buttock,1.2,1.5,0.1,light,reject,No active Medicare Part B coverage,2026-06-28 17:18:22,2026-06-28 17:18:22
+34,FA-041,101,Helen,Holt,1,0,,,,1.3,0.8,0.8,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:18:22,2026-06-28 17:18:22
+35,FA-047,101,Irene,Nakamura,1,1,,,Plantar,2.2,1.0,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:18:22,2026-06-28 17:18:22
+36,FA-031,101,Howard,Yates,0,1,abscess,,,0.8,1.5,0.6,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:18:22,2026-06-28 17:18:22
+37,FA-045,101,Doris,Xavier,0,1,abscess,,,1.2,0.9,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:18:27,2026-06-28 17:18:27
+38,FA-052,101,Edna,Kowalski,1,1,,,,2.8,3.2,,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:18:28,2026-06-28 17:18:28
+39,FA-005,101,Kristina,Bergstrom,1,1,,,Lower Leg,3.1,3.4,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:18:31,2026-06-28 17:18:31
+40,FA-035,101,Pearl,Yuen,0,1,abscess,,,0.8,0.7,0.7,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:18:32,2026-06-28 17:18:32
+41,FA-037,101,Floyd,Lawson,0,1,pressure ulcer,Stage 4,Sacral,4.5,6.4,3.6,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:18:32,2026-06-28 17:18:32
+42,FA-039,101,Wilfred,Haines,1,1,pressure ulcer,,Plantar,1.4,1.7,0.7,moderate,auto_accept,"All required fields documented: pressure ulcer, Plantar, measurements 1.4x1.7x0.7 cm, drainage: moderate",2026-06-28 17:18:32,2026-06-28 17:18:32
+43,FA-048,101,Ethel,Nguyen,1,1,,,,5.4,5.4,0.2,,flag_for_review,"Missing required fields: wound type, drainage level, wound location",2026-06-28 17:18:33,2026-06-28 17:18:33
+44,FA-051,101,Jean,Watts,1,1,abscess,,,0.9,1.4,,light,flag_for_review,Missing required fields: wound location,2026-06-28 17:18:33,2026-06-28 17:18:33
+45,FA-056,101,Clifford,Thornton,1,1,,,Left Foot,5.2,1.7,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:18:33,2026-06-28 17:18:33
+46,FA-055,101,Emil,Espinoza,1,1,abscess,,,0.5,1.5,0.4,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:18:33,2026-06-28 17:18:33
+47,FA-058,101,Luther,Ewing,0,1,pressure ulcer,Stage 3,Buttock,,,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:18:33,2026-06-28 17:18:33
+48,FA-060,101,Dorothy,Lefebvre,1,1,,,,3.5,5.4,0.7,,flag_for_review,"Missing required fields: wound type, drainage level, wound location",2026-06-28 17:18:34,2026-06-28 17:18:34
+49,FA-038,101,Norma,Lynch,1,1,pressure ulcer,,Plantar,3.1,1.7,0.3,none,auto_accept,"All required fields documented: pressure ulcer, Plantar, measurements 3.1x1.7x0.3 cm, drainage: none",2026-06-28 17:18:35,2026-06-28 17:18:35
+50,FA-053,101,Carl,Nakamura,1,1,pressure ulcer,Stage 3,Buttock,6.7,4.5,,heavy,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 6.7x4.5 cm, drainage: heavy",2026-06-28 17:18:38,2026-06-28 17:18:38
+51,FA-046,101,Calvin,Elliot,0,1,,,Plantar,2.9,3.1,0.8,light,reject,No active Medicare Part B coverage,2026-06-28 17:18:41,2026-06-28 17:18:41
+52,FA-054,101,Thelma,Elliot,0,0,,,,1.0,2.1,,light,reject,No active Medicare Part B coverage,2026-06-28 17:18:41,2026-06-28 17:18:41
+53,FA-018,101,Leonard,Valentine,0,1,,,Heel,1.1,2.9,0.3,,reject,No active Medicare Part B coverage,2026-06-28 17:18:42,2026-06-28 17:18:42
+54,FA-043,101,Jean,Jennings,1,1,abscess,,,1.9,0.6,,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:18:42,2026-06-28 17:18:42
+55,FA-049,101,Oscar,Vanhook,1,1,,,Buttock,3.8,4.1,0.9,,flag_for_review,"Missing required fields: wound type, drainage level",2026-06-28 17:18:43,2026-06-28 17:18:43
+56,FA-050,101,Willis,Quinn,1,0,,,,0.7,2.5,,light,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:18:43,2026-06-28 17:18:43
+57,FA-044,101,Russel,Nguyen,1,0,burn,,Arm,2.8,1.8,,moderate,auto_accept,"All required fields documented: burn, Arm, measurements 2.8x1.8 cm, drainage: moderate",2026-06-28 17:18:43,2026-06-28 17:18:43
+58,FA-070,101,Della,Greer,1,0,burn,,Arm,2.6,3.5,0.2,moderate,auto_accept,"All required fields documented: burn, Arm, measurements 2.6x3.5x0.2 cm, drainage: moderate",2026-06-28 17:18:43,2026-06-28 17:18:43
+59,FA-071,101,Edna,Dawson,1,1,,,,,,,,flag_for_review,Wound ICD-10 diagnosis present but no measurements or wound narrative found,2026-06-28 17:18:44,2026-06-28 17:18:44
+60,FA-073,101,Julia,Ibarra,0,1,pressure ulcer,Stage 4,Left Heel,9.3,7.4,2.2,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:18:44,2026-06-28 17:18:44
+61,FA-075,101,Ivan,Medina,0,0,pressure ulcer,,,2.1,1.3,0.5,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:18:45,2026-06-28 17:18:45
+62,FA-065,101,Gertrude,Coleman,0,0,burn,,Arm,3.1,4.8,0.2,light,reject,No active Medicare Part B coverage,2026-06-28 17:18:49,2026-06-28 17:18:49
+63,FA-067,101,Emma,Ibarra,1,1,,,,4.8,1.0,1.9,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:18:52,2026-06-28 17:18:52
+64,FA-062,101,Perry,Jefferson,0,1,,,Plantar,4.1,0.9,0.3,light,reject,No active Medicare Part B coverage,2026-06-28 17:18:55,2026-06-28 17:18:55
+65,FA-063,101,Irene,Nguyen,0,0,,,,2.3,0.8,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:18:55,2026-06-28 17:18:55
+66,FA-068,101,Wilfred,Fleming,1,1,pressure ulcer,Stage 2,Buttock,4.0,2.2,0.3,none,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 4.0x2.2x0.3 cm, drainage: none",2026-06-28 17:19:03,2026-06-28 17:19:03
+67,FA-042,101,Olive,Kaczmarek,0,1,pressure ulcer,,Lower Leg,5.2,2.4,0.2,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:03,2026-06-28 17:19:03
+68,FA-072,101,Clara,Elliot,1,1,,,Lower Leg,2.5,4.5,0.2,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:19:04,2026-06-28 17:19:04
+69,FA-079,101,Charlotte,Xiong,1,1,,,,2.1,3.3,1.1,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:19:05,2026-06-28 17:19:05
+70,FA-064,101,Bernard,Obrien,0,1,pressure ulcer,,Lower Leg,4.0,1.8,0.8,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:06,2026-06-28 17:19:06
+71,FA-085,101,Lewis,Okonkwo,0,0,pressure ulcer,,Arm,2.0,3.8,0.0,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:07,2026-06-28 17:19:07
+72,FA-066,101,Gilbert,Watts,1,1,pressure ulcer,,Heel,,,,light,flag_for_review,Missing required fields: measurements (L×W),2026-06-28 17:19:12,2026-06-28 17:19:12
+73,FA-078,101,Martha,Vance,0,1,,,Plantar,1.7,3.4,0.6,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:12,2026-06-28 17:19:12
+74,FA-069,101,Donald,Tanner,1,1,pressure ulcer,,Sacral,3.4,2.1,1.7,heavy,auto_accept,"All required fields documented: pressure ulcer, Sacral, measurements 3.4x2.1x1.7 cm, drainage: heavy",2026-06-28 17:19:13,2026-06-28 17:19:13
+75,FA-082,101,Francis,Watts,0,1,,,Left Foot,4.0,2.2,1.5,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:19:13,2026-06-28 17:19:13
+76,FA-081,101,Vera,Yuen,0,1,abscess,,,1.7,1.4,,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:13,2026-06-28 17:19:13
+77,FA-090,101,Una,Nielsen,0,0,,,,1.1,2.0,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:14,2026-06-28 17:19:14
+78,FA-077,101,Queenie,Goldstein,1,1,,,Left Foot,4.3,4.7,1.2,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:19:20,2026-06-28 17:19:20
+79,FA-089,101,Frances,Sanchez,1,1,,,Lower Leg,3.6,3.1,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:19:23,2026-06-28 17:19:23
+80,FA-057,101,Della,Frazier,1,1,abscess,,,0.8,0.8,,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:19:24,2026-06-28 17:19:24
+81,FA-059,101,Phyllis,Figueroa,1,1,abscess,,,1.6,1.1,,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:19:24,2026-06-28 17:19:24
+82,FA-083,101,Frank,Ortega,1,0,,,,1.6,1.7,0.9,light,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:19:25,2026-06-28 17:19:25
+83,FA-097,101,Stella,Ivers,0,1,,,Plantar,2.4,2.6,0.4,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:25,2026-06-28 17:19:25
+84,FA-076,101,Curtis,Frazier,0,1,abscess,,,0.5,1.1,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:25,2026-06-28 17:19:25
+85,FA-080,101,Rosa,Nakamura,1,1,pressure ulcer,,Plantar,2.1,2.0,1.3,light,auto_accept,"All required fields documented: pressure ulcer, Plantar, measurements 2.1x2.0x1.3 cm, drainage: light",2026-06-28 17:19:25,2026-06-28 17:19:25
+86,FA-084,101,Beverly,Ingram,0,1,,,,4.0,2.6,1.3,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:19:26,2026-06-28 17:19:26
+87,FA-101,101,Richard,Larsson,0,1,,,Buttock,9.2,4.6,2.7,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:19:27,2026-06-28 17:19:27
+88,FA-087,101,Doris,Haynes,0,1,,,Buttock,2.4,3.4,1.5,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:19:33,2026-06-28 17:19:33
+89,FA-094,101,Jennie,Nakamura,0,0,,,,,,,,reject,No active Medicare Part B coverage,2026-06-28 17:19:34,2026-06-28 17:19:34
+90,FA-061,101,Theodore,Elliot,0,0,,,,2.8,1.7,0.6,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:35,2026-06-28 17:19:35
+91,FA-100,101,Gilbert,Nielsen,1,0,,,,1.3,1.1,,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:19:36,2026-06-28 17:19:36
+92,FA-086,101,Ima,Coleman,0,1,pressure ulcer,,Heel,,,,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:38,2026-06-28 17:19:38
+93,FA-093,101,Vera,Oates,0,1,,,Left Foot,4.0,3.0,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:41,2026-06-28 17:19:41
+94,FA-103,101,Earl,Goldstein,0,1,abscess,,Heel,,,,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:43,2026-06-28 17:19:43
+95,FA-104,101,Gloria,Upton,0,1,pressure ulcer,Stage 2,Buttock,1.4,1.4,0.4,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:44,2026-06-28 17:19:44
+96,FA-095,101,Mabel,Ewing,0,1,,,Lower Leg,5.6,5.0,0.7,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:19:45,2026-06-28 17:19:45
+97,FA-110,101,Roberta,Newton,1,1,,,,2.4,4.5,0.1,,flag_for_review,"Missing required fields: wound type, drainage level, wound location",2026-06-28 17:19:45,2026-06-28 17:19:45
+98,FA-074,101,Ruth,Vega,0,0,,,,1.1,1.4,,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:45,2026-06-28 17:19:45
+99,FA-111,101,Martha,Abbott,1,1,,,Plantar,1.9,1.9,,none,flag_for_review,Missing required fields: wound type,2026-06-28 17:19:45,2026-06-28 17:19:45
+100,FA-105,101,Thelma,Benson,0,1,,,Lower Leg,5.7,1.6,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:45,2026-06-28 17:19:45
+101,FA-098,101,Clifford,Kim,1,1,,,Left Foot,4.7,2.1,2.0,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:19:46,2026-06-28 17:19:46
+102,FA-115,101,Lester,Mack,0,0,,,,2.7,1.1,0.7,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:46,2026-06-28 17:19:46
+103,FA-107,101,Dora,Haynes,0,1,,,,,,,,reject,No active Medicare Part B coverage,2026-06-28 17:19:48,2026-06-28 17:19:48
+104,FA-118,101,Howard,Vanhook,1,1,,,Lower Leg,6.1,2.4,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:19:49,2026-06-28 17:19:49
+105,FA-119,101,James,Johansson,1,0,,,,2.4,0.5,0.8,light,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:19:49,2026-06-28 17:19:49
+106,FA-108,101,Greta,Perry,1,0,burn,,Arm,1.6,4.0,0.1,light,auto_accept,"All required fields documented: burn, Arm, measurements 1.6x4.0x0.1 cm, drainage: light",2026-06-28 17:19:51,2026-06-28 17:19:51
+107,FA-091,101,Ruth,Patterson,1,1,,,,3.6,4.5,0.5,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:19:55,2026-06-28 17:19:55
+108,FA-092,101,Ima,Mack,0,1,,,Lower Leg,5.4,1.7,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:55,2026-06-28 17:19:55
+109,FB-003,102,Phyllis,Dominguez,0,1,,,Lower Leg,7.1,5.5,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:19:56,2026-06-28 17:19:56
+110,FA-114,101,Lois,Irwin,0,1,,,Foot,4.9,2.2,1.2,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:19:56,2026-06-28 17:19:56
+111,FA-116,101,Lewis,Patel,0,1,,,Plantar,1.4,3.1,,none,reject,No active Medicare Part B coverage,2026-06-28 17:19:56,2026-06-28 17:19:56
+112,FA-106,101,Perry,Bergstrom,0,1,,,,0.6,0.9,0.2,light,reject,No active Medicare Part B coverage,2026-06-28 17:19:56,2026-06-28 17:19:56
+113,FB-006,102,Katherine,Figueroa,1,1,,,Lower Leg,3.2,3.7,,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:19:56,2026-06-28 17:19:56
+114,FB-007,102,Nettie,Abbott,0,1,pressure ulcer,Stage 2,Sacral,3.5,3.4,0.3,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:57,2026-06-28 17:19:57
+115,FB-009,102,Leon,Oates,0,1,pressure ulcer,Stage 2,Right Heel,1.3,2.7,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:57,2026-06-28 17:19:57
+116,FA-102,101,Frederick,Patterson,0,0,burn,,Arm,1.9,2.0,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:19:57,2026-06-28 17:19:57
+117,FB-001,102,Jerome,Pruitt,0,1,,,Buttock,4.4,4.2,1.0,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:02,2026-06-28 17:20:02
+118,FA-109,101,Edna,Quinn,1,1,,,,1.1,1.8,,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:20:04,2026-06-28 17:20:04
+119,FA-099,101,Virginia,Rhodes,1,1,,,,3.8,1.0,,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:20:07,2026-06-28 17:20:07
+120,FA-112,101,Leona,Haynes,0,1,pressure ulcer,Stage 3,Left Heel,4.4,3.4,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:07,2026-06-28 17:20:07
+121,FB-005,102,Della,Okonkwo,0,1,,,Lower Leg,3.3,2.3,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:07,2026-06-28 17:20:07
+122,FA-113,101,Nathan,Tanner,0,0,burn,,Arm,3.9,3.1,,light,reject,No active Medicare Part B coverage,2026-06-28 17:20:07,2026-06-28 17:20:07
+123,FB-004,102,Ralph,Holt,0,1,abscess,,,1.4,1.1,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:07,2026-06-28 17:20:07
+124,FB-016,102,Olive,Goldstein,1,1,,,,,,,,flag_for_review,Wound ICD-10 diagnosis present but no measurements or wound narrative found,2026-06-28 17:20:08,2026-06-28 17:20:08
+125,FB-014,102,Nettie,Upton,1,1,abscess,,,2.0,0.2,0.6,light,flag_for_review,Missing required fields: wound location,2026-06-28 17:20:08,2026-06-28 17:20:08
+126,FB-020,102,Bernard,Okonkwo,1,1,,,,,,,,flag_for_review,Wound ICD-10 diagnosis present but no measurements or wound narrative found,2026-06-28 17:20:09,2026-06-28 17:20:09
+127,FB-010,102,Beatrice,Dunbar,0,0,pressure ulcer,,,2.6,0.7,0.7,light,reject,No active Medicare Part B coverage,2026-06-28 17:20:09,2026-06-28 17:20:09
+128,FB-022,102,Shirley,Ewing,0,1,,,,7.8,1.9,0.6,,reject,No active Medicare Part B coverage,2026-06-28 17:20:10,2026-06-28 17:20:10
+129,FA-120,101,Nathan,Beckett,1,1,,,,3.7,3.1,1.1,,flag_for_review,"Missing required fields: wound type, drainage level, wound location",2026-06-28 17:20:10,2026-06-28 17:20:10
+130,FB-023,102,Merton,Oates,0,1,,,Lower Leg,7.3,5.0,0.8,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:11,2026-06-28 17:20:11
+131,FB-024,102,Philip,Haines,0,1,,,Plantar,1.9,3.8,0.2,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:12,2026-06-28 17:20:12
+132,FA-088,101,Yvonne,Valentine,1,1,,,Plantar,1.9,3.2,1.2,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:13,2026-06-28 17:20:13
+133,FB-027,102,Elmer,Ingram,1,1,,,Plantar,3.7,2.6,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:14,2026-06-28 17:20:14
+134,FB-018,102,Martha,Kowalski,0,1,pressure ulcer,,Buttock,5.4,2.8,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:19,2026-06-28 17:20:19
+135,FB-008,102,Donald,Perry,1,1,,,Left Foot,4.3,2.4,1.2,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:20,2026-06-28 17:20:20
+136,FB-025,102,Ethel,Newton,0,1,pressure ulcer,Stage 2,Buttock,1.9,1.9,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:22,2026-06-28 17:20:22
+137,FB-011,102,Phyllis,Lefebvre,0,1,,,,5.4,2.4,0.6,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:22,2026-06-28 17:20:22
+138,FB-012,102,Pearl,Haynes,1,0,burn,,Arm,1.3,2.3,,moderate,auto_accept,"All required fields documented: burn, Arm, measurements 1.3x2.3 cm, drainage: moderate",2026-06-28 17:20:22,2026-06-28 17:20:22
+139,FB-032,102,Calvin,Christodoulou,1,1,,,,4.9,1.6,,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:20:23,2026-06-28 17:20:23
+140,FA-096,101,Winnie,Dominguez,1,1,,,,,,,,flag_for_review,Wound ICD-10 diagnosis present but no measurements or wound narrative found,2026-06-28 17:20:26,2026-06-28 17:20:26
+141,FB-002,102,Shirley,Stanton,0,0,,,,2.5,1.9,0.9,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:26,2026-06-28 17:20:26
+142,FB-036,102,Velma,Zimmerman,0,1,,,,1.8,0.8,0.2,light,reject,No active Medicare Part B coverage,2026-06-28 17:20:26,2026-06-28 17:20:26
+143,FB-015,102,Ursula,Morales,1,0,,,,0.6,1.2,,light,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:20:28,2026-06-28 17:20:28
+144,FB-017,102,Charlotte,Estrada,0,1,,,Plantar,1.1,3.8,1.2,light,reject,No active Medicare Part B coverage,2026-06-28 17:20:29,2026-06-28 17:20:29
+145,FB-039,102,Gloria,Sanchez,0,1,pressure ulcer,,Lower Leg,6.2,3.0,0.4,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:29,2026-06-28 17:20:29
+146,FB-040,102,Velma,Kane,0,1,,,Lower Leg,5.6,5.4,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:30,2026-06-28 17:20:30
+147,FB-031,102,Greta,Webb,1,1,abscess,,,1.6,0.5,,light,flag_for_review,Missing required fields: wound location,2026-06-28 17:20:32,2026-06-28 17:20:32
+148,FA-117,101,Rosa,Ortega,0,1,pressure ulcer,Stage 3,Buttock,,,,light,reject,No active Medicare Part B coverage,2026-06-28 17:20:34,2026-06-28 17:20:34
+149,FB-028,102,Charlotte,Ivers,1,0,,,,1.1,2.2,0.6,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:20:35,2026-06-28 17:20:35
+150,FB-037,102,Oliver,Mack,1,1,pressure ulcer,Stage 3,Right Hip,2.5,2.4,,moderate,auto_accept,"All required fields documented: pressure ulcer, Right Hip, measurements 2.5x2.4 cm, drainage: moderate",2026-06-28 17:20:37,2026-06-28 17:20:37
+151,FB-029,102,Greta,Babatunde,1,0,,,Arm,5.8,2.6,0.1,light,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:39,2026-06-28 17:20:39
+152,FB-021,102,Monroe,Yuen,1,1,pressure ulcer,Stage 3,Buttock,2.9,4.4,,light,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 2.9x4.4 cm, drainage: light",2026-06-28 17:20:40,2026-06-28 17:20:40
+153,FB-033,102,Gilbert,Christodoulou,1,1,,,Plantar,4.3,3.2,,light,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:44,2026-06-28 17:20:44
+154,FB-013,102,Wilbur,Jensen,0,1,,,Heel,5.2,3.6,3.2,,reject,No active Medicare Part B coverage,2026-06-28 17:20:45,2026-06-28 17:20:45
+155,FB-044,102,Walter,Babatunde,1,1,,,Lower Leg,6.9,1.7,,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:45,2026-06-28 17:20:45
+156,FB-045,102,Hubert,Medina,0,1,,,Plantar,3.4,2.4,1.4,light,reject,No active Medicare Part B coverage,2026-06-28 17:20:47,2026-06-28 17:20:47
+157,FB-051,102,Vera,Reyes,0,1,pressure ulcer,,Sacral,5.2,2.2,1.3,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:48,2026-06-28 17:20:48
+158,FB-038,102,Elmer,Medina,1,1,,,Lower Leg,2.8,3.8,0.7,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:49,2026-06-28 17:20:49
+159,FB-046,102,Tillie,Warren,0,1,,,Plantar,4.7,0.9,0.9,,reject,No active Medicare Part B coverage,2026-06-28 17:20:50,2026-06-28 17:20:50
+160,FB-042,102,Velma,Dawson,0,1,pressure ulcer,Stage 2,Sacral,1.2,1.8,0.3,light,reject,No active Medicare Part B coverage,2026-06-28 17:20:53,2026-06-28 17:20:53
+161,FB-048,102,Samuel,Babatunde,0,0,burn,,Arm,1.1,2.0,0.2,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:54,2026-06-28 17:20:54
+162,FB-043,102,Queenie,Jensen,1,1,,,Foot,3.7,2.1,1.3,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:54,2026-06-28 17:20:54
+163,FB-056,102,Edgar,Zuniga,1,0,burn,,Arm,1.1,3.5,0.2,light,auto_accept,"All required fields documented: burn, Arm, measurements 1.1x3.5x0.2 cm, drainage: light",2026-06-28 17:20:54,2026-06-28 17:20:54
+164,FB-058,102,Melvin,Hoffman,1,1,,,Left Foot,2.2,1.8,,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:55,2026-06-28 17:20:55
+165,FB-049,102,Edgar,Vance,0,1,,,,2.3,3.5,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:20:55,2026-06-28 17:20:55
+166,FB-050,102,Jesse,Nguyen,0,1,pressure ulcer,Stage 2,Buttock,3.3,2.5,0.3,none,reject,No active Medicare Part B coverage,2026-06-28 17:20:56,2026-06-28 17:20:56
+167,FB-061,102,Preston,Marsh,1,1,,,,,,,,flag_for_review,Wound ICD-10 diagnosis present but no measurements or wound narrative found,2026-06-28 17:20:56,2026-06-28 17:20:56
+168,FB-035,102,Russel,Carpenter,1,1,,,,3.4,1.1,0.7,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:20:56,2026-06-28 17:20:56
+169,FB-062,102,Oscar,Hoffman,0,1,pressure ulcer,,Buttock,5.1,1.6,1.6,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:20:57,2026-06-28 17:20:57
+170,FB-052,102,Monroe,Xiong,0,1,,,Plantar,4.6,2.4,1.4,,reject,No active Medicare Part B coverage,2026-06-28 17:20:58,2026-06-28 17:20:58
+171,FB-019,102,Beverly,Ferreira,1,1,,,Plantar,4.8,3.5,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:20:59,2026-06-28 17:20:59
+172,FB-047,102,Wilfred,Nielsen,0,1,pressure ulcer,Stage 4,Left Heel,4.7,3.7,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:21:00,2026-06-28 17:21:00
+173,FB-054,102,Dorothy,Garrison,0,0,burn,,Arm,5.4,4.4,0.2,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:01,2026-06-28 17:21:01
+174,FB-030,102,Patricia,Ingram,0,0,burn,,Heel,,,,light,reject,No active Medicare Part B coverage,2026-06-28 17:21:02,2026-06-28 17:21:02
+175,FB-026,102,Maurice,Kowalski,1,1,pressure ulcer,Stage 2,Left Heel,2.7,3.2,0.2,moderate,auto_accept,"All required fields documented: pressure ulcer, Left Heel, measurements 2.7x3.2x0.2 cm, drainage: moderate",2026-06-28 17:21:03,2026-06-28 17:21:03
+176,FB-034,102,Mabel,Abbott,1,1,pressure ulcer,Stage 4,Left Heel,7.4,5.1,,heavy,auto_accept,"All required fields documented: pressure ulcer, Left Heel, measurements 7.4x5.1 cm, drainage: heavy",2026-06-28 17:21:04,2026-06-28 17:21:04
+177,FB-063,102,Ida,Kelley,0,0,,,,2.9,1.3,0.3,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:07,2026-06-28 17:21:07
+178,FB-065,102,Lloyd,Espinoza,1,1,,,Buttock,4.8,3.3,1.4,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:21:09,2026-06-28 17:21:09
+179,FB-053,102,Donald,Kim,0,1,,,Lower Leg,7.4,1.1,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:21:10,2026-06-28 17:21:10
+180,FB-066,102,Rosie,Tanner,1,1,pressure ulcer,Stage 2,Left Heel,2.1,2.2,,light,auto_accept,"All required fields documented: pressure ulcer, Left Heel, measurements 2.1x2.2 cm, drainage: light",2026-06-28 17:21:10,2026-06-28 17:21:10
+181,FB-041,102,Jennie,Ivers,0,1,pressure ulcer,Stage 2,Right Heel,1.3,1.6,0.4,none,reject,No active Medicare Part B coverage,2026-06-28 17:21:11,2026-06-28 17:21:11
+182,FB-075,102,Eleanor,Aldridge,0,1,pressure ulcer,,Buttock,5.5,3.3,0.7,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:11,2026-06-28 17:21:11
+183,FB-068,102,Melvin,Kim,0,1,,,,4.1,2.7,1.4,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:21:11,2026-06-28 17:21:11
+184,FB-070,102,Garland,Reyes,0,1,,,Lower Leg,1.6,4.6,0.5,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:13,2026-06-28 17:21:13
+185,FB-057,102,Russel,Ibarra,0,1,,,Plantar,1.8,1.1,0.9,light,reject,No active Medicare Part B coverage,2026-06-28 17:21:15,2026-06-28 17:21:15
+186,FB-059,102,Una,Haynes,0,1,pressure ulcer,,Buttock,3.8,2.7,1.0,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:16,2026-06-28 17:21:16
+187,FB-060,102,Ethel,Xiong,0,1,pressure ulcer,Stage 2,Right Heel,1.0,0.9,,none,reject,No active Medicare Part B coverage,2026-06-28 17:21:16,2026-06-28 17:21:16
+188,FB-082,102,Edna,Kelley,0,1,,,,5.7,1.2,0.3,,reject,No active Medicare Part B coverage,2026-06-28 17:21:17,2026-06-28 17:21:17
+189,FB-083,102,Sadie,Castillo,1,1,pressure ulcer,Stage 3,Left Heel,5.2,2.6,,heavy,auto_accept,"All required fields documented: pressure ulcer, Left Heel, measurements 5.2x2.6 cm, drainage: heavy",2026-06-28 17:21:17,2026-06-28 17:21:17
+190,FB-072,102,Mildred,Babatunde,1,1,,,Left Foot,2.6,3.2,1.0,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:21:17,2026-06-28 17:21:17
+191,FB-084,102,Melvin,Oduya,1,1,,,Left Foot,4.5,2.0,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:21:18,2026-06-28 17:21:18
+192,FB-076,102,Harvey,Hoffman,0,1,pressure ulcer,Stage 3,Right Heel,4.6,3.3,1.2,light,reject,No active Medicare Part B coverage,2026-06-28 17:21:21,2026-06-28 17:21:21
+193,FB-055,102,Fannie,Jensen,0,1,,,Plantar,3.1,1.5,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:23,2026-06-28 17:21:23
+194,FB-071,102,Martha,Ibarra,0,1,,,,1.5,0.6,0.2,,reject,No active Medicare Part B coverage,2026-06-28 17:21:24,2026-06-28 17:21:24
+195,FB-085,102,Ada,Jennings,1,1,,,Sacral,8.2,6.3,1.7,,flag_for_review,"Missing required fields: wound type, drainage level",2026-06-28 17:21:28,2026-06-28 17:21:28
+196,FB-086,102,Lewis,Aldridge,0,1,pressure ulcer,,Buttock,3.6,1.7,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:29,2026-06-28 17:21:29
+197,FB-074,102,Velma,Aldridge,0,0,,,,,,,,reject,No active Medicare Part B coverage,2026-06-28 17:21:31,2026-06-28 17:21:31
+198,FB-067,102,Thelma,Vance,1,0,,,,2.3,1.1,0.4,light,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:21:31,2026-06-28 17:21:31
+199,FB-077,102,Hazel,Okonkwo,0,1,,,Plantar,1.6,2.4,0.5,none,reject,No active Medicare Part B coverage,2026-06-28 17:21:32,2026-06-28 17:21:32
+200,FB-069,102,Tillie,Webb,1,1,,,,4.4,2.6,1.4,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:21:33,2026-06-28 17:21:33
+201,FB-088,102,Francis,Jacobs,1,1,,,Left Foot,4.3,5.0,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:21:34,2026-06-28 17:21:34
+202,FB-079,102,Edna,Coleman,1,0,burn,,Arm,5.5,4.0,0.2,moderate,auto_accept,"All required fields documented: burn, Arm, measurements 5.5x4.0x0.2 cm, drainage: moderate",2026-06-28 17:21:34,2026-06-28 17:21:34
+203,FC-006,103,Melvin,Simmons,1,1,,,,1.8,3.5,,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:21:34,2026-06-28 17:21:34
+204,FC-007,103,Maurice,Ivers,0,1,pressure ulcer,,Left Foot,2.7,2.4,0.8,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:21:35,2026-06-28 17:21:35
+205,FC-009,103,Katherine,Jacobs,1,1,,,Plantar,3.3,1.2,,none,flag_for_review,Missing required fields: wound type,2026-06-28 17:21:35,2026-06-28 17:21:35
+206,FC-001,103,Alice,Kelley,1,1,,,Foot,4.3,4.4,1.3,,flag_for_review,"Missing required fields: wound type, drainage level",2026-06-28 17:21:40,2026-06-28 17:21:40
+207,FC-011,103,Emil,Jensen,0,1,,,Plantar,4.7,1.4,0.4,none,reject,No active Medicare Part B coverage,2026-06-28 17:21:40,2026-06-28 17:21:40
+208,FC-002,103,Floyd,Abbott,1,1,,,Plantar,3.6,2.3,0.7,light,flag_for_review,Missing required fields: wound type,2026-06-28 17:21:41,2026-06-28 17:21:41
+209,FC-003,103,Olive,Jennings,1,1,pressure ulcer,Stage 3,Buttock,6.2,4.5,,light,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 6.2x4.5 cm, drainage: light",2026-06-28 17:21:42,2026-06-28 17:21:42
+210,FC-008,103,Della,Medina,1,1,,,Lower Leg,1.6,3.3,0.7,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:21:45,2026-06-28 17:21:45
+211,FB-090,102,Morris,Tanner,0,1,,,Lower Leg,3.6,1.2,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:21:49,2026-06-28 17:21:49
+212,FB-073,102,Perry,Yuen,0,1,,,,4.9,1.6,0.8,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:49,2026-06-28 17:21:49
+213,FC-004,103,Robert,Yuen,0,0,pressure ulcer,,Arm,5.2,3.4,0.1,light,reject,No active Medicare Part B coverage,2026-06-28 17:21:52,2026-06-28 17:21:52
+214,FC-013,103,Sidney,Yuen,0,1,,,,1.7,3.9,0.6,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:21:52,2026-06-28 17:21:52
+215,FC-005,103,Fannie,Lefebvre,1,1,,,,,,,,flag_for_review,Wound ICD-10 diagnosis present but no measurements or wound narrative found,2026-06-28 17:21:53,2026-06-28 17:21:53
+216,FB-078,102,Irving,Watts,1,1,,,,2.0,2.4,0.9,moderate,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:21:55,2026-06-28 17:21:55
+217,FB-089,102,Celia,Tanner,1,0,,,,2.2,1.5,0.4,light,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:21:55,2026-06-28 17:21:55
+218,FC-015,103,Paul,Jefferson,1,1,,,Plantar,1.8,1.8,0.6,,flag_for_review,"Missing required fields: wound type, drainage level",2026-06-28 17:21:56,2026-06-28 17:21:56
+219,FC-010,103,Vera,Ingram,0,1,,,Plantar,1.5,3.7,,light,reject,No active Medicare Part B coverage,2026-06-28 17:21:56,2026-06-28 17:21:56
+220,FC-024,103,Woodrow,Quinn,0,0,,,,0.5,0.6,0.5,light,reject,No active Medicare Part B coverage,2026-06-28 17:21:56,2026-06-28 17:21:56
+221,FC-023,103,Homer,Medina,0,1,,,Buttock,3.4,1.6,1.3,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:21:56,2026-06-28 17:21:56
+222,FB-081,102,Donald,Obrien,0,1,abscess,,,1.7,0.5,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:21:56,2026-06-28 17:21:56
+223,FC-017,103,Queenie,Simmons,1,1,,,Plantar,2.7,0.9,0.8,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:22:00,2026-06-28 17:22:00
+224,FC-028,103,Donald,Warren,1,1,,,Lower Leg,3.6,1.9,,moderate,flag_for_review,Missing required fields: wound type,2026-06-28 17:22:00,2026-06-28 17:22:00
+225,FC-018,103,Stanley,Yuen,0,0,,,,2.2,1.5,0.7,,reject,No active Medicare Part B coverage,2026-06-28 17:22:03,2026-06-28 17:22:03
+226,FC-030,103,Katherine,Rhodes,0,1,,,Plantar,3.0,2.8,1.1,none,reject,No active Medicare Part B coverage,2026-06-28 17:22:03,2026-06-28 17:22:03
+227,FC-021,103,George,Frazier,0,1,,,Left Foot,3.7,1.7,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:05,2026-06-28 17:22:05
+228,FB-080,102,Hubert,Zuniga,1,1,abscess,,Heel,,,,light,flag_for_review,Missing required fields: measurements (L×W),2026-06-28 17:22:06,2026-06-28 17:22:06
+229,FC-026,103,Irving,Yates,1,1,abscess,,,0.8,0.9,,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:22:07,2026-06-28 17:22:07
+230,FC-033,103,Dora,Medina,0,1,,,,3.0,2.8,0.5,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:22:07,2026-06-28 17:22:07
+231,FC-035,103,Theodore,Castillo,0,1,,,Foot,4.8,3.4,1.0,,reject,No active Medicare Part B coverage,2026-06-28 17:22:07,2026-06-28 17:22:07
+232,FC-012,103,Richard,Xiong,1,1,pressure ulcer,Stage 4,Buttock,,,,moderate,flag_for_review,Missing required fields: measurements (L×W),2026-06-28 17:22:11,2026-06-28 17:22:11
+233,FC-019,103,Frederick,Hoffman,0,0,,,,1.9,2.2,0.5,,reject,No active Medicare Part B coverage,2026-06-28 17:22:13,2026-06-28 17:22:13
+234,FC-031,103,Harvey,Jefferson,0,1,,,Plantar,2.3,2.1,0.8,light,reject,No active Medicare Part B coverage,2026-06-28 17:22:14,2026-06-28 17:22:14
+235,FC-020,103,Naomi,Yamamoto,0,0,,,,3.0,1.8,0.2,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:14,2026-06-28 17:22:14
+236,FC-022,103,Grover,Stanton,0,1,,,Lower Leg,3.9,3.8,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:16,2026-06-28 17:22:16
+237,FC-027,103,Opal,Dominguez,1,1,,,,,,,,flag_for_review,Wound ICD-10 diagnosis present but no measurements or wound narrative found,2026-06-28 17:22:17,2026-06-28 17:22:17
+238,FB-064,102,Chester,Tanner,0,1,pressure ulcer,Stage 2,Sacral,3.1,2.5,,none,reject,No active Medicare Part B coverage,2026-06-28 17:22:18,2026-06-28 17:22:18
+239,FC-036,103,Nathan,Tillman,1,1,pressure ulcer,,Sacral,5.9,2.0,,heavy,auto_accept,"All required fields documented: pressure ulcer, Sacral, measurements 5.9x2.0 cm, drainage: heavy",2026-06-28 17:22:19,2026-06-28 17:22:19
+240,FC-016,103,George,Kowalski,1,1,pressure ulcer,Stage 3,Left Hip,5.8,2.2,0.9,light,auto_accept,"All required fields documented: pressure ulcer, Left Hip, measurements 5.8x2.2x0.9 cm, drainage: light",2026-06-28 17:22:20,2026-06-28 17:22:20
+241,FC-029,103,Eleanor,Tanner,1,1,,,Left Foot,2.4,4.0,1.8,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:22:21,2026-06-28 17:22:21
+242,FC-014,103,Harvey,Sanchez,1,1,pressure ulcer,,Heel,,,,light,flag_for_review,Missing required fields: measurements (L×W),2026-06-28 17:22:23,2026-06-28 17:22:23
+243,FC-038,103,Mamie,Ortega,1,1,pressure ulcer,,Buttock,4.3,4.8,1.2,heavy,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 4.3x4.8x1.2 cm, drainage: heavy",2026-06-28 17:22:25,2026-06-28 17:22:25
+244,FC-039,103,Ida,Vega,0,1,,,Left Foot,2.8,4.6,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:22:25,2026-06-28 17:22:25
+245,FC-025,103,Thelma,Gibson,0,1,,,Left Foot,3.3,2.9,1.5,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:22:27,2026-06-28 17:22:27
+246,FC-042,103,Inez,Jefferson,1,1,pressure ulcer,,Sacral,,,,light,flag_for_review,Missing required fields: measurements (L×W),2026-06-28 17:22:28,2026-06-28 17:22:28
+247,FC-044,103,Yolanda,Lefebvre,0,1,,,Left Foot,2.2,2.6,0.6,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:30,2026-06-28 17:22:30
+248,FC-047,103,Hubert,Barker,0,0,burn,,Arm,3.7,2.2,,light,reject,No active Medicare Part B coverage,2026-06-28 17:22:34,2026-06-28 17:22:34
+249,FC-040,103,Queenie,Nakamura,0,1,,,Foot,3.3,4.7,0.8,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:22:35,2026-06-28 17:22:35
+250,FC-032,103,Beatrice,Medina,1,1,,,,3.1,2.4,0.2,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:22:37,2026-06-28 17:22:37
+251,FC-041,103,George,Nkrumah,1,1,pressure ulcer,Stage 4,Right Heel,9.1,5.2,3.3,moderate,auto_accept,"All required fields documented: pressure ulcer, Right Heel, measurements 9.1x5.2x3.3 cm, drainage: moderate",2026-06-28 17:22:37,2026-06-28 17:22:37
+252,FC-051,103,Xenia,Larsson,1,1,pressure ulcer,Stage 3,Buttock,6.3,3.9,,light,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 6.3x3.9 cm, drainage: light",2026-06-28 17:22:38,2026-06-28 17:22:38
+253,FC-057,103,Charlotte,Vega,1,1,pressure ulcer,Stage 2,Buttock,,,,none,flag_for_review,Missing required fields: measurements (L×W),2026-06-28 17:22:38,2026-06-28 17:22:38
+254,FC-034,103,Preston,Morales,0,1,abscess,,,0.5,1.2,0.2,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:39,2026-06-28 17:22:39
+255,FC-052,103,Queenie,Hoffman,0,1,pressure ulcer,,Lower Leg,2.2,5.4,0.6,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:40,2026-06-28 17:22:40
+256,FC-045,103,Roland,Christodoulou,1,1,,,,1.9,2.8,,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:22:41,2026-06-28 17:22:41
+257,FC-046,103,Paul,Torres,0,0,,,,1.2,2.0,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:43,2026-06-28 17:22:43
+258,FB-087,102,Celia,Kerr,1,1,,,Plantar,3.9,3.9,,none,flag_for_review,Missing required fields: wound type,2026-06-28 17:22:43,2026-06-28 17:22:43
+259,FC-054,103,Calvin,Xavier,0,1,,,Lower Leg,6.2,5.7,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:46,2026-06-28 17:22:46
+260,FC-055,103,Raymond,Nakamura,0,0,burn,,Arm,2.8,1.6,0.2,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:22:47,2026-06-28 17:22:47
+261,FC-050,103,Celia,Ortega,0,1,pressure ulcer,Stage 4,Buttock,5.3,4.5,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:22:47,2026-06-28 17:22:47
+262,FC-065,103,Della,Lefebvre,1,1,,,,1.1,1.4,0.7,,flag_for_review,"Missing required fields: wound type, drainage level, wound location",2026-06-28 17:22:48,2026-06-28 17:22:48
+263,FC-043,103,Perry,Johansson,0,1,,,,4.0,4.4,0.2,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:22:50,2026-06-28 17:22:50
+264,FC-059,103,Oliver,Jennings,0,1,,,,1.7,2.0,0.4,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:22:50,2026-06-28 17:22:50
+265,FC-037,103,Gilbert,Haynes,0,1,,,,,,,,reject,No active Medicare Part B coverage,2026-06-28 17:22:52,2026-06-28 17:22:52
+266,FC-070,103,Philip,Ortega,1,1,,,Plantar,1.4,0.8,,none,flag_for_review,Missing required fields: wound type,2026-06-28 17:22:52,2026-06-28 17:22:52
+267,FC-071,103,Una,Vanhook,1,0,burn,,Arm,1.8,1.2,,light,auto_accept,"All required fields documented: burn, Arm, measurements 1.8x1.2 cm, drainage: light",2026-06-28 17:22:53,2026-06-28 17:22:53
+268,FC-048,103,Lewis,Warren,1,1,,,Sacral,2.8,3.1,0.7,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:22:55,2026-06-28 17:22:55
+269,FC-073,103,Donald,Frazier,1,1,pressure ulcer,Stage 4,Left Heel,7.8,4.0,3.7,heavy,auto_accept,"All required fields documented: pressure ulcer, Left Heel, measurements 7.8x4.0x3.7 cm, drainage: heavy",2026-06-28 17:22:56,2026-06-28 17:22:56
+270,FC-066,103,Donald,Upton,1,1,abscess,,,1.3,1.0,,light,flag_for_review,Missing required fields: wound location,2026-06-28 17:22:59,2026-06-28 17:22:59
+271,FC-069,103,Wilbur,Haynes,0,1,pressure ulcer,Stage 2,Left Heel,2.2,1.2,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:23:01,2026-06-28 17:23:01
+272,FC-063,103,Bernard,Garrison,0,1,,,Left Foot,2.5,4.1,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:23:03,2026-06-28 17:23:03
+273,FC-072,103,Arthur,Tanner,1,1,pressure ulcer,,Left Foot,2.2,4.8,1.0,moderate,auto_accept,"All required fields documented: pressure ulcer, Left Foot, measurements 2.2x4.8x1.0 cm, drainage: moderate",2026-06-28 17:23:04,2026-06-28 17:23:04
+274,FC-062,103,Yolanda,Chandler,1,1,pressure ulcer,Stage 4,Sacral,5.4,7.7,,heavy,auto_accept,"All required fields documented: pressure ulcer, Sacral, measurements 5.4x7.7 cm, drainage: heavy",2026-06-28 17:23:04,2026-06-28 17:23:04
+275,FC-077,103,Albert,Perry,1,1,,,Heel,3.5,3.9,0.8,,flag_for_review,"Missing required fields: wound type, drainage level",2026-06-28 17:23:04,2026-06-28 17:23:04
+276,FC-053,103,Robert,Haynes,0,0,,,,,,,,reject,No active Medicare Part B coverage,2026-06-28 17:23:05,2026-06-28 17:23:05
+277,FC-078,103,Gordon,Zimmerman,1,1,pressure ulcer,,Lower Leg,5.5,1.8,0.5,heavy,auto_accept,"All required fields documented: pressure ulcer, Lower Leg, measurements 5.5x1.8x0.5 cm, drainage: heavy",2026-06-28 17:23:05,2026-06-28 17:23:05
+278,FC-080,103,Stella,Warren,1,1,pressure ulcer,Stage 3,Buttock,6.0,5.0,0.5,light,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 6.0x5.0x0.5 cm, drainage: light",2026-06-28 17:23:05,2026-06-28 17:23:05
+279,FC-082,103,Gilbert,Pruitt,1,1,,,Foot,5.5,2.0,1.0,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:23:05,2026-06-28 17:23:05
+280,FC-049,103,Olive,Mack,0,1,abscess,,,1.6,1.0,0.7,light,reject,No active Medicare Part B coverage,2026-06-28 17:23:06,2026-06-28 17:23:06
+281,FC-058,103,Mabel,Tanner,1,1,pressure ulcer,,Sacral,2.1,2.8,,moderate,auto_accept,"All required fields documented: pressure ulcer, Sacral, measurements 2.1x2.8 cm, drainage: moderate",2026-06-28 17:23:10,2026-06-28 17:23:10
+282,FC-068,103,Thelma,Oneal,0,0,burn,,Arm,4.6,3.5,0.1,light,reject,No active Medicare Part B coverage,2026-06-28 17:23:10,2026-06-28 17:23:10
+283,FC-060,103,Rosie,Upton,1,1,pressure ulcer,Stage 4,Buttock,4.6,4.1,,heavy,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 4.6x4.1 cm, drainage: heavy",2026-06-28 17:23:11,2026-06-28 17:23:11
+284,FC-076,103,Frederick,Oduya,0,1,pressure ulcer,Stage 4,Buttock,,,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:23:12,2026-06-28 17:23:12
+285,FC-089,103,Jennie,Dunbar,1,1,pressure ulcer,Stage 2,Buttock,3.8,3.2,0.3,none,auto_accept,"All required fields documented: pressure ulcer, Buttock, measurements 3.8x3.2x0.3 cm, drainage: none",2026-06-28 17:23:12,2026-06-28 17:23:12
+286,FC-081,103,Edna,Goldstein,1,1,,,,4.3,3.2,1.2,heavy,flag_for_review,"Missing required fields: wound type, wound location",2026-06-28 17:23:15,2026-06-28 17:23:15
+287,FC-083,103,Norman,Patel,0,1,pressure ulcer,Stage 4,Buttock,5.8,3.8,,heavy,reject,No active Medicare Part B coverage,2026-06-28 17:23:16,2026-06-28 17:23:16
+288,FC-074,103,Berta,Upton,1,1,pressure ulcer,,Lower Leg,6.5,5.0,0.3,heavy,auto_accept,"All required fields documented: pressure ulcer, Lower Leg, measurements 6.5x5.0x0.3 cm, drainage: heavy",2026-06-28 17:23:17,2026-06-28 17:23:17
+289,FC-067,103,Clifford,Nakamura,1,1,,,Buttock,7.0,2.1,0.9,heavy,flag_for_review,Missing required fields: wound type,2026-06-28 17:23:19,2026-06-28 17:23:19
+290,FC-075,103,Lillian,Webb,0,0,,,,0.5,0.5,0.2,,reject,No active Medicare Part B coverage,2026-06-28 17:23:19,2026-06-28 17:23:19
+291,FC-086,103,Clifford,Diaz,0,1,,,Plantar,3.0,3.8,0.4,none,reject,No active Medicare Part B coverage,2026-06-28 17:23:21,2026-06-28 17:23:21
+292,FC-088,103,Morris,Reyes,0,1,pressure ulcer,Stage 2,Right Heel,3.0,3.2,0.3,light,reject,No active Medicare Part B coverage,2026-06-28 17:23:22,2026-06-28 17:23:22
+293,FC-061,103,Francis,Jensen,0,1,pressure ulcer,Stage 3,Right Hip,6.4,4.7,,light,reject,No active Medicare Part B coverage,2026-06-28 17:23:22,2026-06-28 17:23:22
+294,FC-056,103,Edna,Haynes,1,1,abscess,,,1.1,1.1,,moderate,flag_for_review,Missing required fields: wound location,2026-06-28 17:23:27,2026-06-28 17:23:27
+295,FC-085,103,Carol,Acosta,1,1,abscess,,,1.4,0.7,,light,flag_for_review,Missing required fields: wound location,2026-06-28 17:23:37,2026-06-28 17:23:37
+296,FC-064,103,Dora,Obrien,0,1,pressure ulcer,Stage 4,Right Heel,8.4,7.8,,moderate,reject,No active Medicare Part B coverage,2026-06-28 17:23:47,2026-06-28 17:23:47
+297,FC-087,103,Frank,Kaczmarek,1,1,,,Plantar,3.9,2.1,0.3,none,flag_for_review,Missing required fields: wound type,2026-06-28 17:23:52,2026-06-28 17:23:52
+298,FC-079,103,Raymond,Marsh,0,1,,,Plantar,1.2,1.6,0.6,light,reject,No active Medicare Part B coverage,2026-06-28 17:23:55,2026-06-28 17:23:55
+299,FC-084,103,Edgar,Christodoulou,0,0,,,,0.7,2.0,0.7,light,reject,No active Medicare Part B coverage,2026-06-28 17:23:56,2026-06-28 17:23:56
+300,FC-090,103,Marguerite,Zuniga,0,1,,,Plantar,1.0,2.9,1.3,light,reject,No active Medicare Part B coverage,2026-06-28 17:24:43,2026-06-28 17:24:43
