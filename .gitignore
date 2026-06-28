@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Secrets / env
+.env
+*.env
+
+# Database (binary, generated)
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+pipeline.log
+
+# Exports (generated output)
+csv_export/
+csv_export.zip
+
+# OS
+.DS_Store
+Thumbs.db

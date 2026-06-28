@@ -1,0 +1,27 @@
+api:
+  base_url: https://hackathon.prod.pulsefoundry.ai
+  max_retries: 20
+  retry_delay: 10
+  facilities: [101, 102, 103]
+
+database:
+  path: wound_pipeline.db
+
+pipeline:
+  max_workers: 15
+  test_mode: false
+  batch_size: 15
+
+llm:
+  model: claude-sonnet-4-6
+  max_tokens: 1024
+  system_prompt_version: v2
+
+routing:
+  auto_accept_fields:
+    - wound_type
+    - length_cm
+    - width_cm
+    - drainage_amount
+    - location
+  require_all_for_auto_accept: true

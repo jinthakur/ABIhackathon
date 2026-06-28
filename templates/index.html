@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wound Care Billing Pipeline</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  body { background: #f8f9fa; }
+  .stat-card { border-radius: 12px; text-align: center; padding: 20px; color: white; }
+  .stat-accept { background: linear-gradient(135deg, #28a745, #20c997); }
+  .stat-review { background: linear-gradient(135deg, #fd7e14, #ffc107); }
+  .stat-reject { background: linear-gradient(135deg, #dc3545, #c82333); }
+  .stat-total  { background: linear-gradient(135deg, #007bff, #6610f2); }
+  .stat-num { font-size: 2.5rem; font-weight: 700; }
+  .stat-label { font-size: 0.9rem; opacity: 0.9; }
+  .decision-badge { font-size: 0.75rem; }
+  .auto_accept { background-color: #d4edda; color: #155724; }
+  .flag_for_review { background-color: #fff3cd; color: #856404; }
+  .reject { background-color: #f8d7da; color: #721c24; }
+  .table-container { max-height: 500px; overflow-y: auto; }
+  .sql-box { font-family: monospace; background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+  .progress { height: 8px; }
+  pre.response { background: #1e1e1e; color: #00ff88; padding: 12px; border-radius: 8px; max-height: 300px; overflow: auto; font-size: 12px; }
+  .table-count-badge { font-size: 0.7rem; }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <span class="navbar-brand fw-bold">🏥 Wound Care Billing Pipeline</span>
+    <span class="text-light small">ABI Hackathon &mdash; Medicare Part B Eligibility</span>
+  </div>
+</nav>
+
+<div class="container-fluid px-4">
+
+  <!-- Stats Row -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3"><div class="stat-card stat-accept">
+      <div class="stat-num" id="stat-accept">{{ stats.auto_accept }}</div>
+      <div class="stat-label">Auto Accept</div>
+    </div></div>
+    <div class="col-md-3"><div class="stat-card stat-review">
+      <div class="stat-num" id="stat-review">{{ stats.flag_for_review }}</div>
+      <div class="stat-label">Flag for Review</div>
+    </div></div>
+    <div class="col-md-3"><div class="stat-card stat-reject">
+      <div class="stat-num" id="stat-reject">{{ stats.reject }}</div>
+      <div class="stat-label">Reject</div>
+    </div></div>
+    <div class="col-md-3"><div class="stat-card stat-total">
+      <div class="stat-num" id="stat-total">{{ stats.total }}</div>
+      <div class="stat-label">Total Patients</div>
+    </div></div>
+  </div>
+
+  <!-- Pipeline Control -->
+  <div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">Pipeline Control</h5>
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <button class="btn btn-primary" onclick="runPipeline()">▶ Run Pipeline</button>
+        <button class="btn btn-outline-secondary" onclick="refreshStats()">⟳ Refresh Stats</button>
+        <div id="pipeline-status" class="text-muted small"></div>
+      </div>
+      <div id="pipeline-progress" class="mt-2" style="display:none">
+        <div class="progress mt-2"><div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:0%"></div></div>
+        <small id="progress-text" class="text-muted">Starting...</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- Results Table -->
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Eligibility Results</h5>
+          <div class="d-flex gap-2">
+            <select class="form-select form-select-sm" id="filter-decision" onchange="filterTable()" style="width:160px">
+              <option value="">All Decisions</option>
+              <option value="auto_accept">Auto Accept</option>
+              <option value="flag_for_review">Flag for Review</option>
+              <option value="reject">Reject</option>
+            </select>
+            <select class="form-select form-select-sm" id="filter-facility" onchange="filterTable()" style="width:130px">
+              <option value="">All Facilities</option>
+              <option value="101">Facility 101</option>
+              <option value="102">Facility 102</option>
+              <option value="103">Facility 103</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-container">
+            <table class="table table-hover table-sm mb-0" id="results-table">
+              <thead class="table-dark sticky-top">
+                <tr>
+                  <th>Patient ID</th><th>Name</th><th>Facility</th>
+                  <th>Medicare B</th><th>Wound Type</th><th>Stage</th>
+                  <th>Measurements</th><th>Drainage</th><th>Decision</th>
+                  <th>Rejection Criteria</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in results %}
+                <tr class="result-row" data-decision="{{ r.routing_decision }}" data-facility="{{ r.facility_id }}">
+                  <td><a href="/patient/{{ r.patient_id }}" class="text-decoration-none fw-bold">{{ r.patient_id }}</a></td>
+                  <td>{{ r.first_name }} {{ r.last_name }}</td>
+                  <td>{{ r.facility_id }}</td>
+                  <td>{% if r.has_medicare_part_b %}<span class="badge bg-success">Yes</span>{% else %}<span class="badge bg-danger">No</span>{% endif %}</td>
+                  <td>{{ r.wound_type or '—' }}</td>
+                  <td>{{ r.wound_stage or '—' }}</td>
+                  <td>{% if r.length_cm %}{{ r.length_cm }}×{{ r.width_cm }}{% if r.depth_cm %}×{{ r.depth_cm }}{% endif %} cm{% else %}—{% endif %}</td>
+                  <td>{{ r.drainage_amount or '—' }}</td>
+                  <td><span class="badge decision-badge {{ r.routing_decision }}">{{ r.routing_decision | replace('_', ' ') | title }}</span></td>
+                  <td>
+                    {% if r.routing_decision == 'auto_accept' %}
+                      <span class="text-success small">All eligibility criteria met</span>
+                    {% elif r.reason %}
+                      <span class="text-danger small" title="{{ r.reason }}" style="cursor:help">
+                        {{ r.reason[:70] }}{% if r.reason|length > 70 %}…{% endif %}
+                      </span>
+                    {% else %}
+                      <span class="text-muted small">—</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer text-muted small" id="table-count">{{ results|length }} rows shown</div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-4">
+
+      <!-- Donut Chart -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white"><h6 class="mb-0">Decision Breakdown</h6></div>
+        <div class="card-body d-flex justify-content-center">
+          <canvas id="decisionDonut" width="260" height="260"></canvas>
+        </div>
+      </div>
+
+      <!-- Table Row Counts -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white"><h6 class="mb-0">Database Tables</h6></div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <thead class="table-light"><tr><th>Table</th><th class="text-end">Rows</th></tr></thead>
+            <tbody>
+              {% for table, count in table_counts.items() %}
+              <tr>
+                <td><code>{{ table }}</code></td>
+                <td class="text-end"><span class="badge bg-secondary table-count-badge">{{ count }}</span></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SQL Query Runner -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white"><h6 class="mb-0">SQL Query Runner</h6></div>
+        <div class="card-body">
+          <textarea class="form-control sql-box mb-2" id="sql-input" rows="4" placeholder="SELECT * FROM eligibility_results WHERE routing_decision='auto_accept' LIMIT 10;">SELECT routing_decision, COUNT(*) as count FROM eligibility_results GROUP BY routing_decision;</textarea>
+          <button class="btn btn-sm btn-dark" onclick="runSQL()">▶ Run SQL</button>
+          <div class="mt-2">
+            <small class="text-muted">Preset queries:</small><br>
+            <button class="btn btn-outline-secondary btn-sm mt-1" onclick="setSQL('SELECT * FROM eligibility_results WHERE routing_decision=\'auto_accept\' ORDER BY patient_id LIMIT 20')">Auto Accept</button>
+            <button class="btn btn-outline-secondary btn-sm mt-1" onclick="setSQL('SELECT patient_id, wound_type, length_cm, width_cm, depth_cm FROM wound_extractions WHERE length_cm IS NOT NULL ORDER BY length_cm DESC LIMIT 15')">Largest Wounds</button>
+            <button class="btn btn-outline-secondary btn-sm mt-1" onclick="setSQL('SELECT facility_id, routing_decision, COUNT(*) as cnt FROM eligibility_results GROUP BY facility_id, routing_decision ORDER BY facility_id')">By Facility</button>
+            <button class="btn btn-outline-secondary btn-sm mt-1" onclick="setSQL('SELECT * FROM failed_api_calls')">Failed API Calls</button>
+          </div>
+          <pre class="response mt-2" id="sql-result" style="display:none"></pre>
+        </div>
+      </div>
+
+      <!-- MCP Query Endpoint -->
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white"><h6 class="mb-0">MCP / API Endpoints</h6></div>
+        <div class="card-body">
+          <p class="text-muted small">Query the pipeline data via REST API:</p>
+          <div class="mb-2">
+            <code class="d-block bg-light p-2 rounded small">GET /api/results</code>
+            <code class="d-block bg-light p-2 rounded small mt-1">GET /api/patient/FA-001</code>
+            <code class="d-block bg-light p-2 rounded small mt-1">GET /api/tables</code>
+            <code class="d-block bg-light p-2 rounded small mt-1">POST /api/query {"sql": "SELECT..."}</code>
+          </div>
+          <button class="btn btn-sm btn-outline-primary" onclick="testMCP('/api/tables')">Test /api/tables</button>
+          <button class="btn btn-sm btn-outline-success" onclick="testMCP('/api/results?limit=3')">Test /api/results</button>
+          <pre class="response mt-2" id="mcp-result" style="display:none"></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Donut chart
+(function() {
+  const ctx = document.getElementById('decisionDonut').getContext('2d');
+  const donut = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Auto Accept', 'Flag for Review', 'Reject'],
+      datasets: [{
+        data: [{{ stats.auto_accept }}, {{ stats.flag_for_review }}, {{ stats.reject }}],
+        backgroundColor: ['#28a745', '#fd7e14', '#dc3545'],
+        borderWidth: 2,
+        borderColor: '#fff',
+        hoverOffset: 10,
+      }]
+    },
+    options: {
+      cutout: '65%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 14, font: { size: 12 } } },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+              const pct = total ? Math.round(100 * ctx.parsed / total) : 0;
+              return ` ${ctx.label}: ${ctx.parsed} (${pct}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // keep chart in sync when refreshStats() is called
+  const _origRefresh = window.refreshStats;
+  window.refreshStats = function() {
+    fetch('/api/status').then(r => r.json()).then(data => {
+      document.getElementById('stat-accept').textContent = data.auto_accept || 0;
+      document.getElementById('stat-review').textContent = data.flag_for_review || 0;
+      document.getElementById('stat-reject').textContent = data.reject || 0;
+      document.getElementById('stat-total').textContent = data.total || 0;
+      donut.data.datasets[0].data = [data.auto_accept || 0, data.flag_for_review || 0, data.reject || 0];
+      donut.update();
+    });
+  };
+})();
+
+function filterTable() {
+  const decision = document.getElementById('filter-decision').value;
+  const facility = document.getElementById('filter-facility').value;
+  let count = 0;
+  document.querySelectorAll('.result-row').forEach(row => {
+    const dMatch = !decision || row.dataset.decision === decision;
+    const fMatch = !facility || row.dataset.facility === facility;
+    row.style.display = (dMatch && fMatch) ? '' : 'none';
+    if (dMatch && fMatch) count++;
+  });
+  document.getElementById('table-count').textContent = count + ' rows shown';
+}
+
+function runSQL() {
+  const sql = document.getElementById('sql-input').value.trim();
+  if (!sql) return;
+  const el = document.getElementById('sql-result');
+  el.style.display = 'block';
+  el.textContent = 'Running...';
+  fetch('/api/query', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({sql})
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.error) { el.textContent = 'ERROR: ' + data.error; return; }
+    el.textContent = `${data.row_count} rows:\n` + JSON.stringify(data.rows, null, 2);
+  })
+  .catch(e => { el.textContent = 'Error: ' + e; });
+}
+
+function setSQL(query) {
+  document.getElementById('sql-input').value = query;
+}
+
+function testMCP(url) {
+  const el = document.getElementById('mcp-result');
+  el.style.display = 'block';
+  el.textContent = 'Fetching...';
+  fetch(url)
+  .then(r => r.json())
+  .then(data => { el.textContent = JSON.stringify(data, null, 2).substring(0, 2000); })
+  .catch(e => { el.textContent = 'Error: ' + e; });
+}
+
+function runPipeline() {
+  if (!confirm('Run the full 300-patient pipeline? This will update all records (upsert).')) return;
+  const status = document.getElementById('pipeline-status');
+  const progressEl = document.getElementById('pipeline-progress');
+  progressEl.style.display = 'block';
+  status.textContent = 'Pipeline starting...';
+  fetch('/api/run-pipeline', {method: 'POST'})
+  .then(r => r.json())
+  .then(data => {
+    if (data.status === 'started') {
+      status.textContent = 'Pipeline running in background...';
+      pollProgress();
+    } else {
+      status.textContent = data.message || 'Error starting pipeline';
+    }
+  })
+  .catch(e => { status.textContent = 'Error: ' + e; });
+}
+
+function pollProgress() {
+  fetch('/api/status')
+  .then(r => r.json())
+  .then(data => {
+    const bar = document.getElementById('progress-bar');
+    const text = document.getElementById('progress-text');
+    const total = data.total || 1;
+    const done = data.done || 0;
+    const pct = Math.round(100 * done / total);
+    bar.style.width = pct + '%';
+    text.textContent = `${done}/${total} patients — accept=${data.auto_accept} review=${data.flag_for_review} reject=${data.reject} errors=${data.error}`;
+    if (data.running) {
+      setTimeout(pollProgress, 2000);
+    } else {
+      document.getElementById('pipeline-status').textContent = 'Pipeline complete!';
+      refreshStats();
+    }
+  });
+}
+
+</script>
+</body>
+</html>

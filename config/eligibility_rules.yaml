@@ -1,0 +1,80 @@
+# Medicare Part B Wound Care Billing Eligibility Rules
+# Applied by src/llm_agent.py — determine_eligibility()
+
+# ── Hard Reject Rules (any one fails → reject) ──────────────────────────────
+reject_rules:
+  - id: R1
+    name: no_medicare_part_b
+    description: "Patient does not have active Medicare Part B coverage"
+    check: "coverage.payer_code NOT IN ('MCB','MCRB') AND 'Part B' NOT IN coverage.payer_name"
+    failure_message: "No active Medicare Part B coverage"
+
+  - id: R2
+    name: no_wound_data_at_all
+    description: "No wound data found anywhere — no notes, no assessments, no wound ICD-10 diagnosis"
+    check: "notes.note_text IS NULL AND assessments IS EMPTY AND diagnoses has no wound ICD-10"
+    failure_message: "No wound data found in notes, assessments, or diagnoses"
+
+# ── Flag for Review Rules (billable payer but missing documentation) ─────────
+flag_rules:
+  - id: F1
+    name: diagnosis_without_documentation
+    description: "Wound ICD-10 diagnosis exists but no measurements or narrative in notes/assessments"
+    check: "has_wound_icd10 = TRUE AND wound_extraction IS NULL"
+    failure_message: "Wound ICD-10 diagnosis present but no measurements or wound narrative found"
+
+  - id: F2
+    name: missing_wound_type
+    description: "Cannot identify wound type (pressure ulcer, DFU, venous, burn, etc.) from notes"
+    check: "wound_type IS NULL"
+    failure_message: "Missing required fields: wound type"
+
+  - id: F3
+    name: missing_measurements
+    description: "Wound length x width not documented in any note or assessment"
+    check: "length_cm IS NULL OR width_cm IS NULL"
+    failure_message: "Missing required fields: measurements (L×W)"
+
+  - id: F4
+    name: missing_drainage
+    description: "Drainage level (none/light/moderate/heavy) not documented"
+    check: "drainage_amount IS NULL"
+    failure_message: "Missing required fields: drainage level"
+
+  - id: F5
+    name: missing_location
+    description: "Anatomical location of wound not clearly stated"
+    check: "location IS NULL"
+    failure_message: "Missing required fields: wound location"
+
+# ── Auto Accept Criteria (ALL must be true) ──────────────────────────────────
+auto_accept_criteria:
+  - has_medicare_part_b: true
+  - wound_type: not null
+  - length_cm: not null
+  - width_cm: not null
+  - drainage_amount: not null
+  - location: not null
+
+# ── ICD-10 Wound Code Prefixes (qualifies as wound diagnosis) ────────────────
+wound_icd10_prefixes:
+  - "L89"     # Pressure ulcer / injury
+  - "L97"     # Non-pressure chronic ulcer of lower limb
+  - "L98.4"   # Non-pressure chronic ulcer of skin NOS
+  - "E10.621" # Type 1 DM with foot ulcer
+  - "E10.622" # Type 1 DM with other skin ulcer
+  - "E11.621" # Type 2 DM with foot ulcer
+  - "E11.622" # Type 2 DM with other skin ulcer
+  - "I83"     # Varicose veins with ulcer
+  - "I87.2"   # Venous insufficiency
+  - "T31"     # Burns classified by extent
+  - "T32"     # Corrosions classified by extent
+  - "L02"     # Cutaneous abscess
+  - "T81"     # Complications of surgical procedures
+  - "M86"     # Osteomyelitis (often accompanies wound)
+
+# ── Medicare Part B Payer Codes ───────────────────────────────────────────────
+medicare_part_b_payer_codes:
+  - "MCB"
+  - "MCRB"
+  - "MEDICARE_B"

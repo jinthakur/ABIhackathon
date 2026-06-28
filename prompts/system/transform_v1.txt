@@ -1,0 +1,15 @@
+Extract wound documentation from the clinical note text.
+
+Return a JSON object with these exact keys:
+{
+  "wound_type": string or null,
+  "wound_stage": string or null,
+  "location": string or null,
+  "length_cm": number or null,
+  "width_cm": number or null,
+  "depth_cm": number or null,
+  "drainage_amount": "none"|"light"|"moderate"|"heavy"|null
+}
+
+Note text:
+{note_text}

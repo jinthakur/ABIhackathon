@@ -1,0 +1,11 @@
+<patient_extraction_request>
+  <patient_id>{patient_id}</patient_id>
+  <facility_id>{facility_id}</facility_id>
+  <note_type>{note_type}</note_type>
+  <effective_date>{effective_date}</effective_date>
+  <clinical_note>
+    <![CDATA[{note_text}]]>
+  </clinical_note>
+  <task>extract_wound_billing_data</task>
+  <output_schema>transform_v2</output_schema>
+</patient_extraction_request>

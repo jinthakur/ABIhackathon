@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Patient {{ patient.patient_id }} — Wound Billing</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .routing-auto_accept { background: #d4edda; color: #155724; border-radius: 8px; padding: 12px 20px; }
+  .routing-flag_for_review { background: #fff3cd; color: #856404; border-radius: 8px; padding: 12px 20px; }
+  .routing-reject { background: #f8d7da; color: #721c24; border-radius: 8px; padding: 12px 20px; }
+  pre { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; padding: 12px; font-size: 12px; max-height: 250px; overflow: auto; }
+</style>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container"><a class="navbar-brand" href="/">&#8592; Wound Billing Dashboard</a></div>
+</nav>
+<div class="container">
+  <h3 class="mb-1">{{ patient.first_name }} {{ patient.last_name }}</h3>
+  <p class="text-muted">Patient ID: <strong>{{ patient.patient_id }}</strong> &bull; Facility: {{ patient.facility_id }}</p>
+
+  <div class="routing-{{ patient.routing_decision }} mb-4 fw-bold fs-5">
+    {{ patient.routing_decision | replace('_', ' ') | upper }}
+    <div class="fs-6 fw-normal mt-1">{{ patient.reason }}</div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header"><strong>Coverage</strong></div>
+        <div class="card-body">
+          <p>Medicare Part B: <span class="badge {% if patient.has_medicare_part_b %}bg-success{% else %}bg-danger{% endif %}">{{ 'Yes' if patient.has_medicare_part_b else 'No' }}</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header"><strong>Wound Data</strong></div>
+        <div class="card-body">
+          <table class="table table-sm mb-0">
+            <tr><td>Type</td><td>{{ patient.wound_type or '—' }}</td></tr>
+            <tr><td>Stage</td><td>{{ patient.wound_stage or '—' }}</td></tr>
+            <tr><td>Location</td><td>{{ patient.location or '—' }}</td></tr>
+            <tr><td>Length</td><td>{{ patient.length_cm or '—' }} cm</td></tr>
+            <tr><td>Width</td><td>{{ patient.width_cm or '—' }} cm</td></tr>
+            <tr><td>Depth</td><td>{{ patient.depth_cm or '—' }} cm</td></tr>
+            <tr><td>Drainage</td><td>{{ patient.drainage_amount or '—' }}</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if notes %}
+  <div class="card border-0 shadow-sm mt-3">
+    <div class="card-header"><strong>Clinical Notes ({{ notes|length }})</strong></div>
+    <div class="card-body">
+      {% for note in notes %}
+      <div class="mb-3">
+        <small class="text-muted">{{ note.note_type }} &bull; {{ note.note_date }}</small>
+        <pre class="mt-1">{{ note.note_text }}</pre>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if diagnoses %}
+  <div class="card border-0 shadow-sm mt-3">
+    <div class="card-header"><strong>ICD-10 Diagnoses ({{ diagnoses|length }})</strong></div>
+    <div class="card-body p-0">
+      <table class="table table-sm mb-0">
+        <thead class="table-light"><tr><th>Code</th><th>Description</th><th>Wound Related</th></tr></thead>
+        <tbody>
+          {% for d in diagnoses %}
+          <tr>
+            <td><code>{{ d.icd10_code }}</code></td>
+            <td>{{ d.description }}</td>
+            <td>{% if d.is_wound_related %}<span class="badge bg-warning">Yes</span>{% else %}No{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+</div>
+</body>
+</html>

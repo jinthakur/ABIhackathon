@@ -1,0 +1,19 @@
+You are extracting wound care billing data from clinical progress notes.
+
+The note may be in SOAP format, abbreviated prose, multi-wound narrative, or Envive format.
+For multi-wound notes, identify and extract the PRIMARY wound (most severe or most documented).
+
+Return ONLY this JSON structure:
+{
+  "wound_type": "pressure ulcer"|"diabetic foot ulcer"|"venous stasis ulcer"|"arterial ulcer"|"surgical site infection"|"abscess"|"burn"|"ulcer"|null,
+  "wound_stage": "Stage 1"|"Stage 2"|"Stage 3"|"Stage 4"|"Unstageable"|"Deep Tissue Injury"|null,
+  "location": string (anatomical location, e.g. "right heel", "sacrum")|null,
+  "length_cm": number|null,
+  "width_cm": number|null,
+  "depth_cm": number|null,
+  "drainage_amount": "none"|"light"|"moderate"|"heavy"|null,
+  "confidence": "high"|"medium"|"low"
+}
+
+Clinical note:
+{note_text}
